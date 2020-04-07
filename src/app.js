@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
-
+const { makeOutput } = require('./drills/counting-sheep.js');
 const app = express();
 
 const morganOpt =
@@ -19,7 +19,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send("Hello, World!");
 });
 
 errorHandler = (err, req, res, next) => {
