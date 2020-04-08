@@ -2,6 +2,7 @@ const prompts = require('prompts');
 const { countingSheep } = require('./drills/counting-sheep.js');
 const { powerCalculator } = require('./drills/power-calculator');
 const { reverseString } = require('./drills/reverse-string');
+const { nthTriangularNumber } = require('./drills/nth-triangular-number');
 
 const questions = [
   {
@@ -21,11 +22,10 @@ const questions = [
   [10] Anagrams
   [11] Organization Chart
   [12] Binary Representation
-  ________________________________________
-  [777] Display all with example arguments
-  ________________________________________
-  [0] Exit
-    `
+________________________________________
+[777] Display all with example arguments
+________________________________________
+[0] Exit`
   }
 ];
 
@@ -41,7 +41,7 @@ Counting Sheep
         await prompts({
           type: 'number',
           name: 'sheepCount',
-          message: `How many sheep to count down from?`
+          message: `How many sheep would you like to count down from?`
         }).then(res => {
           console.log(countingSheep(res.sheepCount));
           recursivePrompts();
@@ -76,6 +76,20 @@ Reverse String
           message: `Which string would you like to reverse?`
         }).then(res => {
           console.log(reverseString(res.properString));
+          recursivePrompts();
+        })
+      );
+      case 4: 
+      console.log(`
+nth Triangular Number
+---------------------`);
+      return (
+        await prompts({
+          type: 'number',
+          name: 'factorNum',
+          message: `Which index of a triangular number would you like?`
+        }).then(res => {
+          console.log(nthTriangularNumber(res.factorNum));
           recursivePrompts();
         })
       );
