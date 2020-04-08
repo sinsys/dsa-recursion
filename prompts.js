@@ -4,6 +4,7 @@ const { powerCalculator } = require('./drills/power-calculator');
 const { reverseString } = require('./drills/reverse-string');
 const { nthTriangularNumber } = require('./drills/nth-triangular-number');
 const { stringSplit } = require('./drills/string-split');
+const { fibonacci } = require('./drills/fibonacci');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -118,9 +119,23 @@ String Split
         },{
           type: 'text',
           name: 'delimiter',
-          message: `What value do you want to split against?`
+          message: `What separator do you want to split against?`
         }]).then(res => {
           console.log(stringSplit(res.baseString, [], res.delimiter));
+          recursivePrompts();
+        })
+      );
+      case 6: 
+      console.log(`
+Fibonacci
+---------`);
+      return (
+        await prompts({
+          type: 'number',
+          name: 'fibNum',
+          message: `Which index of the Fibonacci sequence would you like?`
+        }).then(res => {
+          console.log(fibonacci(res.fibNum));
           recursivePrompts();
         })
       );
