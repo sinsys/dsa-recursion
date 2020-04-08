@@ -3,6 +3,7 @@ const { countingSheep } = require('./drills/counting-sheep.js');
 const { powerCalculator } = require('./drills/power-calculator');
 const { reverseString } = require('./drills/reverse-string');
 const { nthTriangularNumber } = require('./drills/nth-triangular-number');
+const { stringSplit } = require('./drills/string-split');
 
 const questions = [
   {
@@ -22,10 +23,12 @@ const questions = [
   [10] Anagrams
   [11] Organization Chart
   [12] Binary Representation
-________________________________________
-[777] Display all with example arguments
-________________________________________
-[0] Exit`
+------------------------------------------
+  [777] Display all with example arguments
+------------------------------------------
+  [0] Exit       |
+------------------
+`
   }
 ];
 
@@ -90,6 +93,24 @@ nth Triangular Number
           message: `Which index of a triangular number would you like?`
         }).then(res => {
           console.log(nthTriangularNumber(res.factorNum));
+          recursivePrompts();
+        })
+      );
+      case 5: 
+      console.log(`
+String Split
+------------`);
+      return (
+        await prompts([{
+          type: 'text',
+          name: 'baseString',
+          message: `What string would you like to split?`
+        },{
+          type: 'text',
+          name: 'delimiter',
+          message: `What value do you want to split against?`
+        }]).then(res => {
+          console.log(stringSplit(res.baseString, [], res.delimiter));
           recursivePrompts();
         })
       );
