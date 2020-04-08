@@ -5,6 +5,7 @@ const { reverseString } = require('./drills/reverse-string');
 const { nthTriangularNumber } = require('./drills/nth-triangular-number');
 const { stringSplit } = require('./drills/string-split');
 
+// May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
   console.log(`
     What is the input to the program? ${input}
@@ -55,12 +56,7 @@ Counting Sheep
           name: 'sheepCount',
           message: `How many sheep would you like to count down from?`
         }).then(res => {
-          displayQuestions(
-            `\n${res.sheepCount}`,
-            countingSheep(res.sheepCount),
-            `countingSheep(n)`,
-            `countingSheep(n - 1)`
-          );
+          console.log(countingSheep(res.sheepCount));
           recursivePrompts();
         })
       );

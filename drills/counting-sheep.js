@@ -11,18 +11,17 @@
 
 const countingSheep = (count, array) => {
 
-  let phrases = array || [];
+  let lines = array || [];
 
   // Base case
   if ( count <= 0 ) {
-    phrases.push("All sheep jumped over the fence");
-    return phrases.join('\n');
+    lines.push("All sheep jumped over the fence");
+    return lines.join('\n');
   };
 
   // General case
-  console.log();
-  phrases.push(`${count}: Another sheep jumps over the fence.`);
-  return countingSheep(--count, phrases);
+  lines.push(`${count}: Another sheep jumps over the fence.`);
+  return countingSheep(--count, lines);
 };
 
 module.exports = {
