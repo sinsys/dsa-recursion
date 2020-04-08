@@ -5,6 +5,7 @@ const { reverseString } = require('./drills/reverse-string');
 const { nthTriangularNumber } = require('./drills/nth-triangular-number');
 const { stringSplit } = require('./drills/string-split');
 const { fibonacci } = require('./drills/fibonacci');
+const { factorial } = require('./drills/factorial');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -136,6 +137,20 @@ Fibonacci
           message: `Which index of the Fibonacci sequence would you like?`
         }).then(res => {
           console.log(fibonacci(res.fibNum));
+          recursivePrompts();
+        })
+      );
+      case 7: 
+      console.log(`
+Factorial
+---------`);
+      return (
+        await prompts({
+          type: 'number',
+          name: 'facNum',
+          message: `Which number would you like the factorial for?`
+        }).then(res => {
+          console.log(factorial(res.facNum));
           recursivePrompts();
         })
       );
