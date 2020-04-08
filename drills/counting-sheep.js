@@ -16,7 +16,7 @@ const countingSheep = (count) => {
   };
 
   // General case
-  console.log(`${count}: Another sheep jumped over the fence.`);
+  console.log(`${count}: Another sheep jumps over the fence.`);
   return countingSheep(--count);
 };
 
