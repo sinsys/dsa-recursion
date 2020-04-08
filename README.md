@@ -3,8 +3,7 @@
 ## Usage
 
 `npm install` - Will install required dependencies.  
-`npm run prompts` - Will provide a dialogue box to select which algorithm you'd like to use.  
-
+`npm start` - Will provide a dialogue box to select which algorithm you'd like to use.  
 
 ## Practice Drills
 

@@ -9,15 +9,20 @@
 //   1: Another sheep jumps over the fence
 //   All sheep jumped over the fence
 
-const countingSheep = (count) => {
+const countingSheep = (count, array) => {
+
+  let phrases = array || [];
+
   // Base case
   if ( count <= 0 ) {
-    return "All sheep jumped over the fence";
+    phrases.push("All sheep jumped over the fence");
+    return phrases.join('\n');
   };
 
   // General case
-  console.log(`${count}: Another sheep jumps over the fence.`);
-  return countingSheep(--count);
+  console.log();
+  phrases.push(`${count}: Another sheep jumps over the fence.`);
+  return countingSheep(--count, phrases);
 };
 
 module.exports = {
