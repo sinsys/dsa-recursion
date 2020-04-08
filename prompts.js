@@ -1,6 +1,7 @@
 const prompts = require('prompts');
 const { countingSheep } = require('./drills/counting-sheep.js');
 const { powerCalculator } = require('./drills/power-calculator');
+const { reverseString } = require('./drills/reverse-string');
 
 const questions = [
   {
@@ -61,6 +62,20 @@ Power Calculator
           message: `What is your exponent?`
         }]).then(res => {
           console.log(powerCalculator(res.baseNum, res.expNum));
+          recursivePrompts();
+        })
+      );
+      case 3: 
+      console.log(`
+Reverse String
+--------------`);
+      return (
+        await prompts({
+          type: 'text',
+          name: 'properString',
+          message: `Which string would you like to reverse?`
+        }).then(res => {
+          console.log(reverseString(res.properString));
           recursivePrompts();
         })
       );
