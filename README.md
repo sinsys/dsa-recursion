@@ -1,4 +1,11 @@
 # Data Structures & Algorithms
+
+## Usage
+
+`npm install` - Will install required dependencies.  
+`npm run prompts` - Will provide a dialogue box to select which algorithm you'd like to use.  
+
+
 ## Practice Drills
 
 ### Requirements
