@@ -8,6 +8,7 @@ const { fibonacci } = require('./drills/fibonacci');
 const { factorial } = require('./drills/factorial');
 const { findWayOutOfMaze } = require('./drills/find-way-out-of-maze');
 const { findAllWaysOutOfMaze } = require('./drills/find-all-ways-out-of-maze');
+const { anagrams } = require('./drills/anagrams');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -110,7 +111,7 @@ Power Calculator
         })
       );
       case 3: 
-      console.log(`
+        console.log(`
 Reverse String
 --------------`);
       return (
@@ -124,7 +125,7 @@ Reverse String
         })
       );
       case 4: 
-      console.log(`
+        console.log(`
 nth Triangular Number
 ---------------------`);
       return (
@@ -138,7 +139,7 @@ nth Triangular Number
         })
       );
       case 5: 
-      console.log(`
+        console.log(`
 String Split
 ------------`);
       return (
@@ -156,7 +157,7 @@ String Split
         })
       );
       case 6: 
-      console.log(`
+        console.log(`
 Fibonacci
 ---------`);
       return (
@@ -170,9 +171,9 @@ Fibonacci
         })
       );
       case 7: 
-      console.log(`
-Factorial
----------`);
+        console.log(`
+  Factorial
+  ---------`);
       return (
         await prompts({
           type: 'number',
@@ -230,7 +231,7 @@ Find a way out of the maze
             recursivePrompts();
           })
         );
-        case 9: 
+      case 9: 
         console.log(`
 Find ALL the ways out of the maze
 ---------------------------------`);
@@ -242,42 +243,62 @@ Find ALL the ways out of the maze
   [1] Small
   [2] Medium
   [3] Big
-  `
-          }).then(res => {
-            let maze;
-            switch (res.mazeNum) {
-              case 1: maze = maze1;
-                break;
-              case 2: maze = maze2;
-                break;
-              case 3: maze = maze3;
-                break;
-              default: return "That is not a valid selection";
-            }
-            // Display results
-            // console.time('Algorithm Timer');
-            console.log(findAllWaysOutOfMaze(maze));
-            // console.timeEnd('Algorithm Timer');
+`
+        }).then(res => {
+          let maze;
+          switch (res.mazeNum) {
+            case 1: maze = maze1;
+              break;
+            case 2: maze = maze2;
+              break;
+            case 3: maze = maze3;
+              break;
+            default: return "That is not a valid selection";
+          }
+          // Display results
+          // console.time('Algorithm Timer');
+          console.log(findAllWaysOutOfMaze(maze));
+          // console.timeEnd('Algorithm Timer');
 
-            // Display the maze
-            let tempMaze = maze;
-            let mazeStr = tempMaze.map(row => {
-              row.unshift("*");
-              row.push("*");
-              return row.join(' ');
-            }).join('\n');
-            const fillRow = [];
-            const length = tempMaze[0].length;
-            for(let i = 0; i < length; i++) {
-              fillRow.push('*');
-            };
-            mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
-            console.log(mazeStr);
-            // End display maze
+          // Display the maze
+          let tempMaze = maze;
+          let mazeStr = tempMaze.map(row => {
+            row.unshift("*");
+            row.push("*");
+            return row.join(' ');
+          }).join('\n');
+          const fillRow = [];
+          const length = tempMaze[0].length;
+          for(let i = 0; i < length; i++) {
+            fillRow.push('*');
+          };
+          mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
+          console.log(mazeStr);
+          // End display maze
 
-            recursivePrompts();
-          })
-        );
+          recursivePrompts();
+        })
+      );
+    case 10: 
+      console.log(`
+Anagrams
+--------`);
+      return (
+        await prompts({
+          type: 'text',
+          name: 'anaStr',
+          message: `Which string would you like anagrams for?
+*** Limit 5 characters ***
+`
+        }).then(res => {
+          if ( res.anaStr.length > 5 ) {
+            console.log("Your string is too long and may affect terminal performance");
+            return recursivePrompts();
+          }
+          console.log(anagrams(res.anaStr));
+          recursivePrompts();
+        })
+      );
     case 0: return console.log("Sorry to see you go!");
     case 777: return (
       console.log("All algorithms with samples")
