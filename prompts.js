@@ -6,6 +6,8 @@ const { nthTriangularNumber } = require('./drills/nth-triangular-number');
 const { stringSplit } = require('./drills/string-split');
 const { fibonacci } = require('./drills/fibonacci');
 const { factorial } = require('./drills/factorial');
+const { findWayOutOfMaze } = require('./drills/find-way-out-of-maze');
+const { findAllWaysOutOfMaze } = require('./drills/find-all-ways-out-of-maze');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -154,6 +156,157 @@ Factorial
           recursivePrompts();
         })
       );
+      case 8: 
+        console.log(`
+Find a way out of the maze
+--------------------------`);
+        return (
+          await prompts({
+            type: 'number',
+            name: 'mazeNum',
+            message: `Which maze would you like to run the algorithm on?
+  [1] Small
+  [2] Medium
+  [3] Big
+  `
+          }).then(res => {
+            // Used for #8 and #9
+            let maze1 = [
+              ['S', ' ', ' '],
+              [' ', '*', ' '],
+              [' ', ' ', 'E']
+            ];
+
+            let maze2 = [
+              ['S', ' ', ' ', '*', ' ', ' ', ' '],
+              ['*', '*', ' ', '*', ' ', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+              [' ', '*', '*', '*', '*', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', 'E']
+            ];
+
+            let maze3 = [
+              ['S', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' '],
+              ['*', ' ', '*', ' ', ' ', ' ', '*', '*', '*', '*', ' '],
+              ['*', ' ', '*', '*', '*', '*', '*', ' ', ' ', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' '],
+              ['*', '*', '*', '*', ' ', '*', '*', '*', ' ', ' ', ' '],
+              [' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', '*', ' '],
+              [' ', '*', ' ', ' ', ' ', '*', '*', '*', ' ', '*', ' '],
+              [' ', '*', '*', '*', ' ', ' ', ' ', '*', ' ', '*', ' '],
+              [' ', '*', ' ', ' ', ' ', '*', ' ', '*', ' ', '*', ' '],
+              [' ', '*', ' ', '*', ' ', '*', ' ', '*', '*', '*', '*'],
+              [' ', ' ', ' ', '*', ' ', '*', ' ', ' ', ' ', ' ', 'E']
+            ];
+            let maze;
+            switch (res.mazeNum) {
+              case 1: maze = maze1;
+                break;
+              case 2: maze = maze2;
+                break;
+              case 3: maze = maze3;
+                break;
+              default: return "That is not a valid selection";
+            }
+            // Display results
+            //console.time('Algorithm Timer');
+            console.log(findWayOutOfMaze(maze));
+            //console.timeEnd('Algorithm Timer');
+
+            // Display the maze
+            let mazeStr = maze.map(row => {
+              row.unshift("*");
+              row.push("*");
+              return row.join(' ');
+            }).join('\n');
+            const fillRow = [];
+            const length = maze[0].length;
+            for(let i = 0; i < length; i++) {
+              fillRow.push('*');
+            };
+            mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
+            console.log(mazeStr);
+            // End display maze
+
+            recursivePrompts();
+          })
+        );
+        case 9: 
+        console.log(`
+Find ALL the ways out of the maze
+---------------------------------`);
+        return (
+          await prompts({
+            type: 'number',
+            name: 'mazeNum',
+            message: `Which maze would you like to run the algorithm on?
+  [1] Small
+  [2] Medium
+  [3] Big
+  `
+          }).then(res => {
+            // Used for #8 and #9
+            let maze1 = [
+              ['S', ' ', ' '],
+              [' ', '*', ' '],
+              [' ', ' ', 'E']
+            ];
+
+            let maze2 = [
+              ['S', ' ', ' ', '*', ' ', ' ', ' '],
+              ['*', '*', ' ', '*', ' ', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+              [' ', '*', '*', '*', '*', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', 'E']
+            ];
+
+            let maze3 = [
+              ['S', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' '],
+              ['*', ' ', '*', ' ', ' ', ' ', '*', '*', '*', '*', ' '],
+              ['*', ' ', '*', '*', '*', '*', '*', ' ', ' ', '*', ' '],
+              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' '],
+              ['*', '*', '*', '*', ' ', '*', '*', '*', ' ', ' ', ' '],
+              [' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', '*', ' '],
+              [' ', '*', ' ', ' ', ' ', '*', '*', '*', ' ', '*', ' '],
+              [' ', '*', '*', '*', ' ', ' ', ' ', '*', ' ', '*', ' '],
+              [' ', '*', ' ', ' ', ' ', '*', ' ', '*', ' ', '*', ' '],
+              [' ', '*', ' ', '*', ' ', '*', ' ', '*', '*', '*', '*'],
+              [' ', ' ', ' ', '*', ' ', '*', ' ', ' ', ' ', ' ', 'E']
+            ];
+            let maze;
+            switch (res.mazeNum) {
+              case 1: maze = maze1;
+                break;
+              case 2: maze = maze2;
+                break;
+              case 3: maze = maze3;
+                break;
+              default: return "That is not a valid selection";
+            }
+            // Display results
+            // console.time('Algorithm Timer');
+            console.log(findAllWaysOutOfMaze(maze));
+            // console.timeEnd('Algorithm Timer');
+
+            // Display the maze
+            let tempMaze = maze;
+            let mazeStr = tempMaze.map(row => {
+              row.unshift("*");
+              row.push("*");
+              return row.join(' ');
+            }).join('\n');
+            const fillRow = [];
+            const length = tempMaze[0].length;
+            for(let i = 0; i < length; i++) {
+              fillRow.push('*');
+            };
+            mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
+            console.log(mazeStr);
+            // End display maze
+
+            recursivePrompts();
+          })
+        );
     case 0: return console.log("Sorry to see you go!");
     case 777: return (
       console.log("All algorithms with samples")
