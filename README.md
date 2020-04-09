@@ -53,7 +53,7 @@ Calculate the nth triangular number. A triangular number counts the objects that
                 *           *    *
    *     |   *   *   |   *    *    *   |
 
- 1st       2nd           3rd             nth?  
+  1st         2nd            3rd            nth?
 ```
 
 ### 5. String Splitter
