@@ -9,6 +9,7 @@ const { factorial } = require('./drills/factorial');
 const { findWayOutOfMaze } = require('./drills/find-way-out-of-maze');
 const { findAllWaysOutOfMaze } = require('./drills/find-all-ways-out-of-maze');
 const { anagrams } = require('./drills/anagrams');
+const { organizationChart } = require('./drills/org-chart');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -76,6 +77,57 @@ const recursivePrompts = async () => {
     [' ', '*', ' ', '*', ' ', '*', ' ', '*', '*', '*', '*'],
     [' ', ' ', ' ', '*', ' ', '*', ' ', ' ', ' ', ' ', 'E']
   ];
+
+  let sampleOrgChart = {
+    Zuckerberg: {
+      Schroepfer: {
+        Bosworth: {
+          Steve: '',
+          Kyle: '',
+          Andra: ''
+        },
+        Zhao: {
+          Richie: '',
+          Sofia: '',
+          Jen: ''
+        }
+      },
+      Shrage: {
+        VanDyck: {
+          Sabrina: '',
+          Michelle: '',
+          Josh: ''
+        },
+        Swain: {
+          Blanch: '',
+          Tom: '',
+          Joe: ''
+        }
+      },
+      Sandberg: {
+        Goler: {
+          Eddie: '',
+          Julie: '',
+          Annie: ''
+        },
+        Hernandex: {
+          Rowi: '',
+          Inga: '',
+          Morgan: ''
+        },
+        Moissinac: {
+          Amy: '',
+          Chuck: '',
+          Vinni: ''
+        },
+        Kelley: {
+          Eric: '',
+          Ana: '',
+          Wes: ''
+        }
+      }
+    }
+  };
   const response = await prompts(questions);
   switch ( response.drillNum ) {
     case 1: 
@@ -110,8 +162,8 @@ Power Calculator
           recursivePrompts();
         })
       );
-      case 3: 
-        console.log(`
+    case 3: 
+      console.log(`
 Reverse String
 --------------`);
       return (
@@ -124,8 +176,8 @@ Reverse String
           recursivePrompts();
         })
       );
-      case 4: 
-        console.log(`
+    case 4: 
+      console.log(`
 nth Triangular Number
 ---------------------`);
       return (
@@ -138,8 +190,8 @@ nth Triangular Number
           recursivePrompts();
         })
       );
-      case 5: 
-        console.log(`
+    case 5: 
+      console.log(`
 String Split
 ------------`);
       return (
@@ -156,8 +208,8 @@ String Split
           recursivePrompts();
         })
       );
-      case 6: 
-        console.log(`
+    case 6: 
+      console.log(`
 Fibonacci
 ---------`);
       return (
@@ -170,10 +222,10 @@ Fibonacci
           recursivePrompts();
         })
       );
-      case 7: 
-        console.log(`
-  Factorial
-  ---------`);
+    case 7: 
+      console.log(`
+Factorial
+---------`);
       return (
         await prompts({
           type: 'number',
@@ -184,65 +236,65 @@ Fibonacci
           recursivePrompts();
         })
       );
-      case 8: 
-        console.log(`
+    case 8: 
+      console.log(`
 Find a way out of the maze
 --------------------------`);
-        return (
-          await prompts({
-            type: 'number',
-            name: 'mazeNum',
-            message: `Which maze would you like to run the algorithm on?
-  [1] Small
-  [2] Medium
-  [3] Big
-  `
-          }).then(res => {
-            let maze;
-            switch (res.mazeNum) {
-              case 1: maze = maze1;
-                break;
-              case 2: maze = maze2;
-                break;
-              case 3: maze = maze3;
-                break;
-              default: return "That is not a valid selection";
-            }
-            // Display results
-            //console.time('Algorithm Timer');
-            console.log(findWayOutOfMaze(maze));
-            //console.timeEnd('Algorithm Timer');
+      return (
+        await prompts({
+          type: 'number',
+          name: 'mazeNum',
+          message: `Which maze would you like to run the algorithm on?
+[1] Small
+[2] Medium
+[3] Big
+`
+        }).then(res => {
+          let maze;
+          switch (res.mazeNum) {
+            case 1: maze = maze1;
+              break;
+            case 2: maze = maze2;
+              break;
+            case 3: maze = maze3;
+              break;
+            default: return "That is not a valid selection";
+          }
+          // Display results
+          //console.time('Algorithm Timer');
+          console.log(findWayOutOfMaze(maze));
+          //console.timeEnd('Algorithm Timer');
 
-            // Display the maze
-            let mazeStr = maze.map(row => {
-              row.unshift("*");
-              row.push("*");
-              return row.join(' ');
-            }).join('\n');
-            const fillRow = [];
-            const length = maze[0].length;
-            for(let i = 0; i < length; i++) {
-              fillRow.push('*');
-            };
-            mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
-            console.log(mazeStr);
-            // End display maze
+          // Display the maze
+          let mazeStr = maze.map(row => {
+            row.unshift("*");
+            row.push("*");
+            return row.join(' ');
+          }).join('\n');
+          const fillRow = [];
+          const length = maze[0].length;
+          for(let i = 0; i < length; i++) {
+            fillRow.push('*');
+          };
+          mazeStr = `\n${fillRow.join(' ')}\n${mazeStr}\n${fillRow.join(' ')}\n`;
+          console.log(mazeStr);
+          // End display maze
 
-            recursivePrompts();
-          })
-        );
-      case 9: 
-        console.log(`
+          recursivePrompts();
+        })
+      );
+    case 9: 
+      console.log(`
 Find ALL the ways out of the maze
 ---------------------------------`);
-        return (
-          await prompts({
-            type: 'number',
-            name: 'mazeNum',
-            message: `Which maze would you like to run the algorithm on?
-  [1] Small
-  [2] Medium
-  [3] Big
+      return (
+        await prompts({
+          type: 'number',
+          name: 'mazeNum',
+          message: `Which maze would you like to run the algorithm on?
+[1] Small
+[2] Medium
+[3] Big
 `
         }).then(res => {
           let maze;
@@ -298,6 +350,14 @@ Anagrams
           console.log(anagrams(res.anaStr));
           recursivePrompts();
         })
+      );
+    case 11: 
+      console.log(`
+Organization Chart
+------------------`);
+      return (
+        console.log(organizationChart(sampleOrgChart).join('\n')),
+        recursivePrompts()
       );
     case 0: return console.log("Sorry to see you go!");
     case 777: return (
