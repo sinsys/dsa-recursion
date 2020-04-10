@@ -10,6 +10,7 @@ const { findWayOutOfMaze } = require('./drills/find-way-out-of-maze');
 const { findAllWaysOutOfMaze } = require('./drills/find-all-ways-out-of-maze');
 const { anagrams } = require('./drills/anagrams');
 const { organizationChart } = require('./drills/org-chart');
+const { binary } = require('./drills/binary');
 
 // May use this later
 const displayQuestions = (input, output, eachInput, eachOutput) => {
@@ -358,6 +359,21 @@ Organization Chart
       return (
         console.log(organizationChart(sampleOrgChart).join('\n')),
         recursivePrompts()
+      );
+    case 12: 
+      console.log(`
+Binary Representation
+---------------------`);
+      return (
+        await prompts({
+          type: 'number',
+          name: 'binaryNum',
+          message: `Which integer would you like to see binary of?
+`
+        }).then(res => {
+          console.log(`${res.binaryNum} is ${binary(res.binaryNum)} in binary.`);
+          recursivePrompts();
+        })
       );
     case 0: return console.log("Sorry to see you go!");
     case 777: return (
