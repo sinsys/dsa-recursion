@@ -29,7 +29,6 @@ const anagrams = (string) => {
   };
 
   combinations('', string);
-  console.log(`Found ${Object.keys(results).length} anagrams:`);
   return Object.keys(results).join('\n');
 };
 

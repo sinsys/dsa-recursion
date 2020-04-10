@@ -20,17 +20,15 @@
 // Path to the exit: RRDDRRUURRDDDD
 // Path to the exit: RRDDRRRRDD
 
-const findAllWaysOutOfMaze = (maze, validPaths, winningPaths, iterations) => {
+const findAllWaysOutOfMaze = (maze, validPaths, winningPaths) => {
   // Setup defaults
   validPaths = validPaths || [
     { path: [], location: [0,0], prevLocations: [] }
   ];
   winningPaths = winningPaths || [];
-  iterations = iterations || 0;
 
   // Base Case
   if ( validPaths.length === 0 ) { 
-    console.log(`Performed ${iterations} iterations.`);
     return (
       winningPaths.map(path => 
         "Path to the exit: " + path.path.join('')
@@ -112,7 +110,7 @@ const findAllWaysOutOfMaze = (maze, validPaths, winningPaths, iterations) => {
       }
     }
   });
-  return findAllWaysOutOfMaze(maze, newValidPaths, winningPaths, iterations + 1);
+  return findAllWaysOutOfMaze(maze, newValidPaths, winningPaths);
 };
 
 module.exports = {
