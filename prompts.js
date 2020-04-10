@@ -13,14 +13,14 @@ const { organizationChart } = require('./drills/org-chart');
 const { binary } = require('./drills/binary');
 
 // May use this later
-const displayQuestions = (input, output, eachInput, eachOutput) => {
-  console.log(`
-    What is the input to the program? ${input}
-    What is the output of the program? ${output}
-    What is the input to each recursive call? ${eachInput}
-    What is the output of each recursive call? ${eachOutput}
-  `);
-};
+// const displayQuestions = (input, output, eachInput, eachOutput) => {
+//   console.log(`
+//     What is the input to the program? ${input}
+//     What is the output of the program? ${output}
+//     What is the input to each recursive call? ${eachInput}
+//     What is the output of each recursive call? ${eachOutput}
+//   `);
+// };
 
 const questions = [
   {
@@ -51,13 +51,13 @@ const questions = [
 
 const recursivePrompts = async () => {
   // Used for #8 and #9
-  let maze1 = [
+  const maze1 = [
     ['S', ' ', ' '],
     [' ', '*', ' '],
     [' ', ' ', 'E']
   ];
 
-  let maze2 = [
+  const maze2 = [
     ['S', ' ', ' ', '*', ' ', ' ', ' '],
     ['*', '*', ' ', '*', ' ', '*', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -65,7 +65,7 @@ const recursivePrompts = async () => {
     [' ', ' ', ' ', ' ', ' ', ' ', 'E']
   ];
 
-  let maze3 = [
+  const maze3 = [
     ['S', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' '],
     ['*', ' ', '*', ' ', ' ', ' ', '*', '*', '*', '*', ' '],
     ['*', ' ', '*', '*', '*', '*', '*', ' ', ' ', '*', ' '],
@@ -129,6 +129,7 @@ const recursivePrompts = async () => {
       }
     }
   };
+
   const response = await prompts(questions);
   switch ( response.drillNum ) {
     case 1: 
@@ -193,8 +194,8 @@ nth Triangular Number
       );
     case 5: 
       console.log(`
-String Split
-------------`);
+String Splitter
+---------------`);
       return (
         await prompts([{
           type: 'text',
@@ -205,7 +206,7 @@ String Split
           name: 'delimiter',
           message: `What separator do you want to split against?`
         }]).then(res => {
-          console.log(stringSplit(res.baseString, [], res.delimiter));
+          console.log(stringSplit(res.baseString, res.delimiter));
           recursivePrompts();
         })
       );
@@ -375,9 +376,109 @@ Binary Representation
           recursivePrompts();
         })
       );
-    case 0: return console.log("Sorry to see you go!");
+    case 0: return console.log('Have a good day!');
     case 777: return (
-      console.log("All algorithms with samples")
+      console.log(`
+[1] Counting Sheep
+------------------
+
+Example call: countingSheep(5)
+Result: 
+
+${countingSheep(5)}
+
+[2] Power Calculator
+--------------------
+
+Example call: powerCalculator(8,5)
+Result: 
+
+${powerCalculator(8,5)}
+
+[3] Reverse String
+------------------
+
+Example call: reverseString('Reverse Me!')
+Result: 
+
+${reverseString("Reverse Me!")}
+
+[4] nth Triangular Number
+-------------------------
+
+Example call: nthTriangularNumber(10)
+Result:
+
+${nthTriangularNumber(10)}
+
+[5] String Splitter
+-------------------
+
+Example call: stringSplit('2020/12/02', '/')
+Result:
+
+${stringSplit('2020/12/02', '/')}
+
+[6] Fibonacci
+-------------
+
+Example call: fibonacci(15)
+Result:
+
+${fibonacci(15)}
+
+[7] Factorial
+-------------
+
+Example call: factorial(8)
+Result:
+
+${factorial(8)}
+
+[8] Find a way out of the maze
+------------------------------
+
+Example call: findWayOutOfMaze(maze)
+Result:
+
+${findWayOutOfMaze(maze3)}
+
+[9] Find ALL the ways out of the maze
+-------------------------------------
+
+Example call: findAllWaysOutOfMaze(maze)
+Result:
+
+${findAllWaysOutOfMaze(maze3)}
+
+[10] Anagrams
+-------------
+
+Example call: anagrams("cash")
+Result:
+
+${anagrams('cash')}
+
+[11] Organization Chart
+-----------------------
+
+Example call: organizationChart(sampleOrgChart)
+Result:
+
+${organizationChart(sampleOrgChart).join('\n')}
+
+[12] Binary Representation
+--------------------------
+
+Example call: binary(9001)
+Result:
+${binary(9001)}
+
+------------------------------------
+       End of demonstration
+------------------------------------
+`),
+      recursivePrompts()
     );
     default: 
       console.log("That isn't a valid selection");

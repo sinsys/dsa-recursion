@@ -23,17 +23,15 @@
 
 // For the above maze, a possible exit path can be RRDDLLDDRRRRRR
 
-const findWayOutOfMaze = (maze, validPaths, winningPaths, iterations) => {
+const findWayOutOfMaze = (maze, validPaths, winningPaths) => {
   // Setup defaults
   validPaths = validPaths || [
     { path: [], location: [0,0], prevLocations: [] }
   ];
   winningPaths = winningPaths || [];
-  iterations = iterations || 0;
 
   // Base Case
   if ( winningPaths.length > 0 ) { 
-    console.log(`Performed ${iterations} iterations.`);
     return (
       winningPaths.map(path => 
         "Path to the exit: " + path.path.join('')
@@ -115,7 +113,7 @@ const findWayOutOfMaze = (maze, validPaths, winningPaths, iterations) => {
       }
     }
   });
-  return findWayOutOfMaze(maze, newValidPaths, winningPaths, iterations + 1);
+  return findWayOutOfMaze(maze, newValidPaths, winningPaths);
 };
 
 module.exports = {

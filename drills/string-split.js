@@ -3,7 +3,7 @@
 // Input: 02/20/2020 
 // Output: ["02", "20", "2020"]
 
-const stringSplit = (string, array, delimiter) => {
+const stringSplit = (string, delimiter, array) => {
 
   let str = string.trim();
   let words = array || [];
@@ -17,7 +17,7 @@ const stringSplit = (string, array, delimiter) => {
 
   // General case
   words.push(str.substr(0, index));
-  return stringSplit(str.slice(index + 1), words, delimiter);
+  return stringSplit(str.slice(index + 1), delimiter, words);
 }
 
 module.exports = {
